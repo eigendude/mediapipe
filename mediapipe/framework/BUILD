@@ -396,6 +396,7 @@ cc_library(
         "@com_google_absl//absl/synchronization",
         "@com_google_absl//absl/time",
     ],
+    alwayslink = 1,
 )
 
 cc_library(
@@ -1986,5 +1987,102 @@ cc_library(
         "@com_google_absl//absl/log:absl_log",
         "@com_google_absl//absl/strings",
         "@com_google_absl//absl/strings:string_view",
+    ],
+)
+
+#-------------------------------------------------------------------------------
+# Monolithic .so
+#-------------------------------------------------------------------------------
+
+cc_binary(
+    name = "absl_monolithic",
+    srcs = ["monolithic_absl.cc"],  # The dummy source
+    linkshared = 1,  # Build as a .so
+    linkstatic = 1,  # Fold all Abseil cc_library deps into this .so
+    visibility = ["//visibility:public"],
+    deps = [
+        # Algorithm
+        "@com_google_absl//absl/algorithm",
+
+        # Base/core headers
+        "@com_google_absl//absl/base",
+
+        # Container: flat_hash_map + flat_hash_set, etc
+        "@com_google_absl//absl/container:btree",
+        "@com_google_absl//absl/container:flat_hash_map",
+        "@com_google_absl//absl/container:flat_hash_set",
+        "@com_google_absl//absl/container:node_hash_map",
+        "@com_google_absl//absl/container:node_hash_set",
+
+        # CRC
+        "@com_google_absl//absl/crc:crc32c",
+
+        # Flags
+        "@com_google_absl//absl/flags:flag",
+
+        # Logging (check + log + absl_check + absl_log)
+        "@com_google_absl//absl/log",
+        "@com_google_absl//absl/log:check",
+        "@com_google_absl//absl/log:absl_check",
+        "@com_google_absl//absl/log:absl_log",
+
+        # Memory
+        "@com_google_absl//absl/memory",
+
+        # Numeric
+        "@com_google_absl//absl/numeric:int128",
+
+        # Status + StatusOr
+        "@com_google_absl//absl/status",
+        "@com_google_absl//absl/status:statusor",
+
+        # Strings + formatting + ostream operator helper
+        "@com_google_absl//absl/strings",
+        "@com_google_absl//absl/strings:has_ostream_operator",
+        "@com_google_absl//absl/strings:str_format",
+
+        # Synchronization
+        "@com_google_absl//absl/synchronization",
+
+        # Time
+        "@com_google_absl//absl/time",
+
+        # Utility
+        "@com_google_absl//absl/utility",
+    ],
+)
+
+#-------------------------------------------------------------------------------
+# Monolithic .so
+#-------------------------------------------------------------------------------
+
+cc_binary(
+    name = "mediapipe_monolithic",
+    srcs = ["monolithic_mediapipe.cc"],  # The dummy source
+    data = [
+        # pose_landmarker files
+        "//mediapipe/modules/pose_detection:pose_detection.tflite",
+        "//mediapipe/modules/pose_landmark:pose_landmark_full.tflite",
+    ],
+    linkshared = 1,  # Produce a shared object
+    linkstatic = 1,  # Include Albseil and all other deps in this .so
+    visibility = ["//visibility:public"],
+    deps = [
+        # Has our Abseil symbols
+        ":absl_monolithic",
+
+        # hello_world dependencies
+        "//mediapipe/calculators/core:pass_through_calculator",
+        "//mediapipe/framework:calculator_graph",
+        "//mediapipe/framework/port:parse_text_proto",
+        "//mediapipe/framework/port:status",
+
+        # pose_landmarker_cpu dependencies
+        "//mediapipe/examples/desktop:demo_run_graph_main",
+        "//mediapipe/graphs/pose_tracking:pose_tracking_cpu_deps",
+
+        # pose_landmarker_gpu dependencies
+        "//mediapipe/examples/desktop:demo_run_graph_main_gpu",
+        "//mediapipe/graphs/pose_tracking:pose_tracking_gpu_deps",
     ],
 )
