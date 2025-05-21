@@ -15,6 +15,8 @@
 # Placeholder for internal Python strict library and test compatibility macro.
 # Placeholder for internal Python strict test compatibility macro.
 
+load("@rules_python//python:defs.bzl", "py_library", "py_test")
+
 licenses(["notice"])
 
 package(default_visibility = ["//mediapipe:__subpackages__"])

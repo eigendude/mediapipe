@@ -1,3 +1,4 @@
+load("@rules_python//python:defs.bzl", "py_binary", "py_library")
 load("//mediapipe/tasks/metadata:build_defs.bzl", "stamp_metadata_parser_version")
 # Placeholder: load py_binary
 # Placeholder: load py_library

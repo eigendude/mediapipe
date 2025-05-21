@@ -2,6 +2,8 @@
    Copied from tools/build_defs/proto/descriptor_set.bzl.
 """
 
+load("@com_google_protobuf//bazel/common:proto_info.bzl", "ProtoInfo")
+
 TransitiveDescriptorInfo = provider(
     "The transitive descriptors from a set of protos.",
     fields = ["descriptors"],

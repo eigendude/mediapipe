@@ -14,6 +14,8 @@
 
 # Placeholder for internal Python strict test compatibility macro.
 
+load("@rules_python//python:defs.bzl", "py_test")
+
 package(default_visibility = ["//mediapipe/tasks:internal"])
 
 licenses(["notice"])

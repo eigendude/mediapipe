@@ -14,6 +14,8 @@
 
 # Placeholder for internal Python strict library and test compatibility macro.
 
+load("@rules_python//python:defs.bzl", "py_library")
+
 package(default_visibility = [
     "//cloud/ml/applications/vision/model_garden/model_oss/mediapipe:__subpackages__",
     "//mediapipe:__subpackages__",

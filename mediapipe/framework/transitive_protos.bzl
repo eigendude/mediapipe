@@ -14,6 +14,9 @@
 
 """Extract a cc_library compatible dependency with only the top level proto rules."""
 
+load("@rules_cc//cc/common:cc_common.bzl", "cc_common")
+load("@rules_cc//cc/common:cc_info.bzl", "CcInfo")
+
 ProtoLibsInfo = provider(fields = ["targets", "out"])
 
 def _get_proto_rules(deps, proto_rules = None):
