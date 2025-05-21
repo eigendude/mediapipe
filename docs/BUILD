@@ -1,5 +1,7 @@
 # Placeholder for internal Python strict binary compatibility macro.
 
+load("@rules_python//python:defs.bzl", "py_binary")
+
 py_binary(
     name = "build_py_api_docs",
     srcs = ["build_py_api_docs.py"],

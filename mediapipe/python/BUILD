@@ -13,6 +13,8 @@
 # limitations under the License.
 
 load("@org_tensorflow//tensorflow:tensorflow.bzl", "pybind_extension")
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+load("@rules_python//python:defs.bzl", "py_library", "py_test")
 
 licenses(["notice"])  # Apache 2.0
 

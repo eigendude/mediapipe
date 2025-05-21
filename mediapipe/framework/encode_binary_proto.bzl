@@ -38,6 +38,7 @@ Args:
 
 # buildifier: disable=out-of-order-load
 
+load("@com_google_protobuf//bazel/common:proto_info.bzl", "ProtoInfo")
 load("@bazel_skylib//lib:paths.bzl", "paths")
 
 PROTOC = "@com_google_protobuf//:protoc"

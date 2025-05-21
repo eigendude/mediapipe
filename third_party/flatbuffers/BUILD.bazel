@@ -1,5 +1,7 @@
 load("@build_bazel_rules_android//android:rules.bzl", "android_library")
 load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
+load("@rules_java//java:java_library.bzl", "java_library")
+load("@rules_python//python:defs.bzl", "py_library")
 load(":build_defs.bzl", "flatbuffer_py_strip_prefix_srcs")
 
 package(default_visibility = ["//visibility:public"])

@@ -43,6 +43,7 @@ Args
   include_headers: A list of header files that must be included.
 """
 
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
 load("//mediapipe/framework/tool:build_defs.bzl", "clean_dep")
 
 def _mediapipe_register_type_generate_cc_impl(ctx):
@@ -105,8 +106,7 @@ def mediapipe_register_type(
         include_headers = include_headers,
         output = base_name + "_registration.cc",
     )
-
-    native.cc_library(
+    cc_library(
         name = base_name + "_registration",
         srcs = [base_name + "_registration.cc"],
         deps = depset(deps + [

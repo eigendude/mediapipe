@@ -14,6 +14,8 @@
 
 # Utilities to help optimize Large Language Models (LLM).
 
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+
 package(default_visibility = [
     "//mediapipe/tasks/cc:__subpackages__",
     "//third_party/odml/infra/genai/inference:__subpackages__",

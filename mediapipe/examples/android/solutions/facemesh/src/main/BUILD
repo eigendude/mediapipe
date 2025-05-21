@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+load("@rules_android//android:rules.bzl", "android_binary")
+
 licenses(["notice"])
 
 package(default_visibility = ["//visibility:private"])

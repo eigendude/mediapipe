@@ -1,6 +1,8 @@
 # Placeholder for internal Python strict library and test compatibility macro.
 # Placeholder: load py_library
 
+load("@rules_python//python:defs.bzl", "py_library")
+
 package(
     default_visibility = [
         "//visibility:public",

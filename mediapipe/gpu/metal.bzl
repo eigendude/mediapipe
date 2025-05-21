@@ -1,4 +1,4 @@
-"""Experimental Skylark rules for Apple's Metal.
+"""Experimental Starlark rules for Apple's Metal.
 
 This creates a .metallib file containing compiled Metal shaders.
 Note that the default behavior in Xcode is to put all metal shaders into a
@@ -35,6 +35,8 @@ load(
     "@build_bazel_rules_apple//apple/internal:resources.bzl",
     "resources",
 )
+load("@rules_cc//cc/common:cc_common.bzl", "cc_common")
+load("@rules_cc//cc/common:cc_info.bzl", "CcInfo")
 
 def _metal_compiler_args(ctx, src, obj, minimum_os_version, copts, diagnostics, deps_dump):
     """Returns arguments for metal compiler."""
@@ -84,7 +86,7 @@ def _metal_compiler_inputs(srcs, hdrs, deps = []):
     return depset(srcs + hdrs, transitive = [dep_headers])
 
 def _metal_library_impl(ctx):
-    """Implementation for metal_library Skylark rule."""
+    """Implementation for metal_library Starlark rule."""
 
     # A unique path for rule's outputs.
     objs_outputs_path = "{}.objs/".format(ctx.label.name)

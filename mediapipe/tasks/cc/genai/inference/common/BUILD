@@ -1,3 +1,5 @@
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+
 DEFAULT_VISIBILITY = [
     "//mediapipe/tasks:__subpackages__",
 ]
